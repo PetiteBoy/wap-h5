@@ -67,6 +67,9 @@ export default {
 .user-info .van-cell__title {
   text-align: left;
 }
+.user-info .van-button {
+  margin-top: 20px;
+}
 .null {
   height: 20px;
   width: 100%;

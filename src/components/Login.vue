@@ -85,7 +85,14 @@ export default {
 </script>
 <style>
 .row {
-  margin-top: 10px;
+  margin-top: 20px;
+}
+.login {
+  padding-top: 20px;
+}
+
+.login .van-cell-group {
+  box-shadow: 0px 1px 3px 0px rgba(140, 140, 140, 0.5);
 }
 </style>
 

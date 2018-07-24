@@ -5,6 +5,8 @@ import Login from '@/components/Login'
 import Reg from '@/components/Reg'
 import UserInfo from '@/components/UserInfo'
 import AuditQuery from '@/components/AuditQuery'
+import BookList from '@/components/BookList'
+import BookDetail from '@/components/BookDetail'
 
 Vue.use(Router)
 
@@ -29,5 +31,13 @@ export default new Router({
     path: '/audit-query',
     name: 'AuditQuery',
     component: AuditQuery
+  }, {
+    path: '/book-list',
+    name: 'BookList',
+    component: BookList
+  }, {
+    path: '/book-detail',
+    name: 'BookDetail',
+    component: BookDetail
   }]
 })

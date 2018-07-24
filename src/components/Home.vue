@@ -11,7 +11,7 @@
     </div>
     <div class="list">
       <div class="item" @click="goUserInfo()">个人信息</div>
-      <div class="item">预约单</div>
+      <div class="item" @click="goBookList()">预约单</div>
       <div class="item" @click="goAuditQuery()">审核状态</div>
       <div class="item">敬请期待</div>
     </div>
@@ -36,15 +36,19 @@ export default {
   methods: {
     // 个人信息
     goUserInfo() {
-      if (getSessionStorage('authKey')) {
-        this.$router.push('/user-info')
-      } else {
-        this.$router.push('/login')
-      }
+      this.$router.push('/user-info')
+      // if (getSessionStorage('authKey')) {
+      //   this.$router.push('/user-info')
+      // } else {
+      //   this.$router.push('/login')
+      // }
     },
     // 查看审验状态
     goAuditQuery() {
       this.$router.push('/audit-query')
+    },
+    goBookList() {
+      this.$router.push('/book-list')
     }
   }
 }
