@@ -86,6 +86,7 @@ export default {
 <style>
 .row {
   margin-top: 20px;
+  background: #ffffff;
 }
 .login {
   padding-top: 20px;

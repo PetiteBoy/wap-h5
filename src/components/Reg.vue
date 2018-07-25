@@ -6,7 +6,7 @@
         <van-picker show-toolbar title="请选择" :columns="idList" @cancel="onCancel" @confirm="onIdConfirm" />
       </van-popup>
       <van-cell-group>
-        <van-field v-model="regData.idNo" label="证件号" placeholder="请输入证件号" />
+        <van-field v-model="regData.idNo" :disabled="!regData.idType" label="证件号" placeholder="请输入证件号" />
       </van-cell-group>
     </div>
     <div class="license">
@@ -15,7 +15,7 @@
         <van-picker show-toolbar title="请选择" :columns="licenseList" @cancel="onCancel" @confirm="onLicenseConfirm" />
       </van-popup>
       <van-cell-group>
-        <van-field v-model="regData.licenseNo" label="证档案编号" placeholder="请输入驾驶证档案编号" />
+        <van-field v-model="regData.licenseNo" :disabled="!regData.licenseType" label="证档案编号" placeholder="请输入驾驶证档案编号" />
       </van-cell-group>
     </div>
     <div class="begin">
@@ -38,13 +38,13 @@
       <van-uploader :after-read="onReadIdCard" multiple>
         上传驾驶人证件图片
       </van-uploader>
-      <img :src="idCardImgUrl" alt="">
+      <img v-if="idCardImgUrl" :src="idCardImgUrl" alt="">
     </div>
     <div class="row">
       <van-uploader :after-read="onReadHeadUrl" accept="image/gif, image/jpeg" multiple>
         上传驾驶人本人头像
       </van-uploader>
-      <img :src="headUrl" alt="">
+      <img v-if="headUrl" :src="headUrl" alt="">
     </div>
     <div class="login">
       <van-cell-group>
@@ -200,6 +200,30 @@ export default {
     },
     // 用户注册
     userReg() {
+      if (!this.regData.idType) {
+        Toast('证件类别不能为空')
+        return
+      }
+      if (!this.regData.idNo) {
+        Toast('证件编号不能为空')
+        return
+      }
+      if (!this.regData.licenseType) {
+        Toast('驾驶证类型不能为空')
+        return
+      }
+      if (!this.regData.licenseNo) {
+        Toast('驾驶证编号不能为空')
+        return
+      }
+      if (!this.regData.phone) {
+        Toast('手机号不能为空')
+        return
+      }
+      if (!this.regData.verifyCode) {
+        Toast('手机验证码不能为空')
+        return
+      }
       httpS.userReg(this.regData).then(res => {
         let result = res.data
         if (result.status === '0x0000') {
@@ -217,12 +241,14 @@ export default {
 .reg .van-button--large {
   border: none;
   border-radius: 0;
-  font-size: 14px;
+  font-size: 12px;
 }
 .row {
-  margin-top: 10px;
+  margin-top: 20px;
   min-height: 40px;
   line-height: 40px;
+  background: #ffffff;
+  margin-bottom: 10px;
 }
 .row img {
   width: 100px;
@@ -230,9 +256,6 @@ export default {
   display: block;
   margin: 0 auto;
   margin-top: 5px;
-}
-.row .van-uploader {
-  font-size: 14px;
 }
 </style>
 
